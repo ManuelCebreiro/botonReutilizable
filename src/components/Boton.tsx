@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 export interface IdBtn {
@@ -6,10 +6,8 @@ export interface IdBtn {
   secondary: boolean
   terciary: boolean
   noBG: boolean
-  hoverPrimary: boolean
-  hoverSecondary: boolean
-  hoverTerciary: boolean
-  hoverNoBg: boolean
+  isDisabled: boolean
+
   
 }
 const Container = styled.div`
@@ -30,19 +28,26 @@ const Botton = styled.button<IdBtn>`
   padding: 12px 16px 12px 16px;
   font-size: 16px;
   border: none;
-  background: ${(props) => (props.primary ? "#115200" : props.secondary ? "white" : props.terciary ? "#b194bd" : props.noBG ? "transparent" : "")};
+  background: ${(active) => (active.primary ? "#115200" : active.secondary ? "white" : active.terciary ? "#b194bd" : active.noBG ? "transparent" : "")};
   color: ${(props) => (props.primary ? "black" : props.secondary ? "black" : props.terciary ? "white" : props.noBG ? "black" : "")};
   &:hover {
-    background-color: ${(estilo) => (estilo.hoverPrimary ? "#274220" : estilo.hoverSecondary ? "grey" : estilo.hoverTerciary ? "#a067b5" : estilo.hoverNoBg ? "red" : "")};
+    opacity: 0.5;
   }
-
+  &:disabled{
+    opacity: 0.4;
+  }
+  
 `;
 
-
-function Boton(props, estilo) {
+function Boton(active, isDisabled) {
+  
   return (
     <Container>
-      <Botton {...props} {...estilo}>Button label</Botton>
+      <Botton 
+      {...active}
+      // {...isDisabled}
+      
+      >Button label</Botton>
     </Container>
   );
 }

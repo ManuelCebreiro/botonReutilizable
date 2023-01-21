@@ -4,25 +4,20 @@ import "./index.css";
 import Boton from "./components/Boton";
 import styled from "styled-components";
 
-
-
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  
   <React.StrictMode>
     <Boton
       primary
-      hoverPrimary
+      disabled
+/>
+    <Boton 
+    secondary 
+    // disabled 
     />
-    <Boton
-      secondary
-      hoverSecondary
-    />
-    <Boton
-      terciary
-      hoverTerciary
-    />
-    <Boton
-      noBG
-      hoverNoBg
-    />
+    <Boton 
+    terciary
+    disabled/>
+    <Boton noBG />
   </React.StrictMode>
 );
