@@ -8,6 +8,21 @@ import styled from "styled-components";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-      <Boton />
+    <Boton
+      primary
+      hoverPrimary
+    />
+    <Boton
+      secondary
+      hoverSecondary
+    />
+    <Boton
+      terciary
+      hoverTerciary
+    />
+    <Boton
+      noBG
+      hoverNoBg
+    />
   </React.StrictMode>
 );

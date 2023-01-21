@@ -1,22 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-export interface Props {
+export interface IdBtn {
   primary: boolean
-  // secondary: boolean
-  // terciary: boolean
-  // noBG: boolean
+  secondary: boolean
+  terciary: boolean
+  noBG: boolean
+  hoverPrimary: boolean
+  hoverSecondary: boolean
+  hoverTerciary: boolean
+  hoverNoBg: boolean
   
 }
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-  display: flex;
+  height: 10vh;
   justify-content: center;
   align-items: center;
+  display: inline;
+
 `;
 
-const Button = styled.button`
+const Botton = styled.button<IdBtn>`
   width: 126px;
   height: 48px;
   top: 20px;
@@ -24,14 +29,20 @@ const Button = styled.button`
   border-radius: 8px;
   padding: 12px 16px 12px 16px;
   font-size: 16px;
-  background: ${(props: Props) => (props.primary ? "#034426" : "#3c7f8b")};
+  border: none;
+  background: ${(props) => (props.primary ? "#115200" : props.secondary ? "white" : props.terciary ? "#b194bd" : props.noBG ? "transparent" : "")};
+  color: ${(props) => (props.primary ? "black" : props.secondary ? "black" : props.terciary ? "white" : props.noBG ? "black" : "")};
+  &:hover {
+    background-color: ${(estilo) => (estilo.hoverPrimary ? "#274220" : estilo.hoverSecondary ? "grey" : estilo.hoverTerciary ? "#a067b5" : estilo.hoverNoBg ? "red" : "")};
+  }
+
 `;
 
 
-function Boton(props) {
+function Boton(props, estilo) {
   return (
     <Container>
-      <Button primary>Button label</Button>
+      <Botton {...props} {...estilo}>Button label</Botton>
     </Container>
   );
 }
