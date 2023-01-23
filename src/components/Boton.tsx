@@ -1,59 +1,101 @@
-import React, {useState} from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import botones from "../media/botones.jpeg";
+import { MdDone } from "react-icons/md";
+
 
 export interface IdBtn {
-  primary: boolean
-  secondary: boolean
-  terciary: boolean
-  noBG: boolean
-  isDisabled: boolean
-
-  
+  primary: boolean;
+  secondary: boolean;
+  terciary: boolean;
+  noBG: boolean;
+  icon: boolean;
 }
-const Container = styled.div`
-  width: 100vw;
-  height: 10vh;
-  justify-content: center;
-  align-items: center;
-  display: inline;
 
-`;
+
 
 const Botton = styled.button<IdBtn>`
   width: 126px;
   height: 48px;
-  top: 20px;
-  left: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
   border-radius: 8px;
   padding: 12px 16px 12px 16px;
   font-size: 16px;
   border: none;
-  background: ${(active) => (active.primary ? "#115200" : active.secondary ? "white" : active.terciary ? "#b194bd" : active.noBG ? "transparent" : "")};
-  color: ${(props) => (props.primary ? "black" : props.secondary ? "black" : props.terciary ? "white" : props.noBG ? "black" : "")};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: ${(active) =>
+    active.primary
+      ? "#114B35"
+      : active.secondary
+      ? "#E7EDEB"
+      : active.terciary
+      ? "#9E81F6"
+      : active.noBG
+      ? "transparent"
+      : ""};
+  color: ${(props) =>
+    props.primary
+      ? "white"
+      : props.secondary
+      ? "black"
+      : props.terciary
+      ? "white"
+      : props.noBG
+      ? "black"
+      : ""};
   &:hover {
-    opacity: 0.5;
+    background: ${(active) =>
+      active.primary
+        ? "#134034"
+        : active.secondary
+        ? "#BDC1C3"
+        : active.terciary
+        ? "#836BCB"
+        : active.noBG
+        ? "#A5A5A6"
+        : ""};
   }
-  &:disabled{
+  &:disabled {
     opacity: 0.4;
+    cursor: not-allowed;
+    background: ${(active) =>
+      active.primary
+        ? "#618176"
+        : active.secondary
+        ? "#CED0CF"
+        : active.terciary
+        ? "#B8A8DE"
+        : active.noBG
+        ? "transparent"
+        : ""};
+
   }
-  
+  ${props => props.icon && css`
+    width: 150px;
+    display: flex;
+    align-items: center;
+
+  `}
+
 `;
 
-function Boton(active, isDisabled) {
+function Boton(activo) {
   
+  const {active, icon} = activo
+  console.log(icon)
   return (
-    <Container>
-      <Botton 
-      {...active}
-      // {...isDisabled}
-      
-      >Button label</Botton>
-    </Container>
+    <>
+      <Botton {...activo}>
+        <>Button label</>
+        {icon?<MdDone size={30}/>:""}
+
+      </Botton>
+    </>
   );
 }
 
 export default Boton;
-
-
-
-
