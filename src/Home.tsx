@@ -1,7 +1,6 @@
-import React from "react";
-import Boton from "./components/Boton";
-import Boton2 from "./components/Boton2";
+import { MdAccountTree, MdDone } from "react-icons/md";
 import styled from "styled-components";
+import Boton2 from "./components/Boton2";
 
 const Contenido = styled.div`
   width: 100vw;
@@ -24,45 +23,11 @@ function Home() {
   return (
     <Contenido>
       <ContenidoHome>
-        <Boton primary>Boton 1</Boton>
-        <Boton primary>Boton 1</Boton>
-        <Boton primary disabled>Boton 1</Boton>
-        <Boton primary icon>Boton 1</Boton>
-        <Boton primary icon>Boton 1</Boton>
-
-        <Boton secondary>Boton 1</Boton>
-        <Boton secondary>Boton 1</Boton>
-        <Boton secondary disabled>Boton 1</Boton>
-        <Boton secondary icon>Boton 1</Boton>
-        <Boton secondary icon>Boton 1</Boton>
-
-        <Boton terciary>Boton 1</Boton>
-        <Boton terciary>Boton 1</Boton>
-        <Boton terciary disabled>Boton 1</Boton>
-        <Boton terciary icon>Boton 1</Boton>
-        <Boton terciary icon>Boton 1</Boton>
-
-        <Boton noBG>Boton 1</Boton>
-        <Boton noBG>Boton 1</Boton>
-        <Boton noBG disabled>Boton 1</Boton>
-        <Boton noBG icon>Boton 1</Boton>
-        <Boton noBG icon>Boton 1</Boton>
-
-      
-        <Boton2
-          background="noBG"
-          color="black"
-          
-        >
+        <Boton2 background="noBG" color="black">
           Boton 2
         </Boton2>
 
-          <Boton2
-          background="primary"
-          disabled
-          >
-          Boton 2
-        </Boton2>
+        <Boton2 background="primary">Boton 2</Boton2>
 
         <Boton2 size="16px" disabled>
           Boton 2
@@ -72,16 +37,24 @@ function Home() {
           background="primary"
           color="white"
           size="16px"
-          icon>Boton 2</Boton2>
-        <Boton2
+          icon={<MdDone size={25} />}
+        >
+          Boton 2
+        </Boton2>
+        <CustomedButton
           background="primary"
-          color="white"
           size="16px"
-          icon>Boton 2</Boton2>
-        
+          icon={<MdAccountTree size={25} />}
+        >
+          Boton 2
+        </CustomedButton>
       </ContenidoHome>
     </Contenido>
   );
 }
 
 export default Home;
+
+const CustomedButton = styled(Boton2)`
+  color: red;
+`;
