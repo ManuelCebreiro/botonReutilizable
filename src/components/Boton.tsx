@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import styled, { css } from "styled-components";
 import botones from "../media/botones.jpeg";
 import { MdDone } from "react-icons/md";
@@ -25,7 +25,7 @@ const Botton = styled.button<IdBtn>`
   border: none;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: ${(active) =>
     active.primary
@@ -76,8 +76,7 @@ const Botton = styled.button<IdBtn>`
   }
   ${props => props.icon && css`
     width: 150px;
-    display: flex;
-    align-items: center;
+    justify-content: space-between;
 
   `}
 
@@ -85,12 +84,12 @@ const Botton = styled.button<IdBtn>`
 
 function Boton(activo) {
   
-  const {active, icon} = activo
+  const {active, icon, children} = activo
   console.log(icon)
   return (
     <>
       <Botton {...activo}>
-        <>Button label</>
+        {children}
         {icon?<MdDone size={30}/>:""}
 
       </Botton>
