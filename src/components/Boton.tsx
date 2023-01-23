@@ -1,8 +1,4 @@
-import React, { Children, useState } from "react";
 import styled, { css } from "styled-components";
-import botones from "../media/botones.jpeg";
-import { MdDone } from "react-icons/md";
-
 
 export interface IdBtn {
   primary: boolean;
@@ -11,8 +7,6 @@ export interface IdBtn {
   noBG: boolean;
   icon: boolean;
 }
-
-
 
 const Botton = styled.button<IdBtn>`
   width: 126px;
@@ -72,28 +66,27 @@ const Botton = styled.button<IdBtn>`
         : active.noBG
         ? "transparent"
         : ""};
-
   }
-  ${props => props.icon && css`
-    width: 150px;
-    justify-content: space-between;
-
-  `}
-
+  ${(props) =>
+    props.icon &&
+    css`
+      width: 150px;
+      justify-content: space-between;
+    `}
 `;
 
-function Boton(activo) {
-  
-  const {active, icon, children} = activo
-  console.log(icon)
-  return (
-    <>
-      <Botton {...activo}>
-        {children}
-        {icon?<MdDone size={30}/>:""}
+type ButtonProps = {
+  active: IdBtn;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+};
 
-      </Botton>
-    </>
+function Boton({ active, icon, children }: ButtonProps) {
+  return (
+    <Botton {...active}>
+      {children}
+      {icon}
+    </Botton>
   );
 }
 
