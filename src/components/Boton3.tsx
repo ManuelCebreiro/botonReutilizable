@@ -5,7 +5,39 @@ enum COLOR {
   secondary = "#E7EDEB",
   terciary = "#9E81F6",
   noBG = "transparent",
+  default = "#000",
+  textColor = "#fff",
 }
+
+export const themes = {
+  default: {
+    background: COLOR.secondary,
+    color: COLOR.default,
+    size: "16px"
+  },
+  primary :{
+    background: COLOR.primary,
+    color: COLOR.textColor,
+    size: "16px"
+  },
+  secondary :{
+    background: COLOR.secondary,
+    color: COLOR.default,
+    size: "16px"
+  },
+  terciary :{
+  background: COLOR.terciary,
+  color: COLOR.textColor,
+  size: "16px"
+  },
+  noBG :{
+    background: COLOR.noBG,
+    color: COLOR.default,
+    size: "16px"
+    },
+};
+
+
 
 export interface IdBtn {
   icon: React.ReactNode;
@@ -30,12 +62,12 @@ const Botton = styled.button<IdBtn>`
   background-color: ${({ background }) => COLOR[background]};
   color: ${({ color }) => color};
   &:hover {
-    background-color: ${({ background }) => COLOR[background]  == "transparent" ? "white" : COLOR[background]};
-
+    background-color: ${({ background }) => COLOR[background] };
     filter: brightness(80%);
   }
   &:disabled {
     //estilo para disabled
+    background-color: ${({ background }) =>  COLOR[background] };
     opacity: 0.4;
     cursor: not-allowed;
     filter: brightness(100%);
@@ -70,10 +102,12 @@ function Boton2({
     <Botton
       icon={icon}
       color={color || "black"}
-      background={background || COLOR.noBG}
+      background={background || COLOR.noBG} 
+      
       size={size || "16px"}
       {...others}
     >
+
       {children}
       {icon}
     </Botton>
