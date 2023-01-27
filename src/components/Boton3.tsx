@@ -1,48 +1,8 @@
 import styled, { css } from "styled-components";
 
-enum COLOR {
-  primary = "#114B35",
-  secondary = "#E7EDEB",
-  terciary = "#9E81F6",
-  noBG = "transparent",
-  default = "#000",
-  textColor = "#fff",
-}
-
-export const themes = {
-  default: {
-    background: COLOR.secondary,
-    color: COLOR.default,
-    size: "16px"
-  },
-  primary :{
-    background: COLOR.primary,
-    color: COLOR.textColor,
-    size: "16px"
-  },
-  secondary :{
-    background: COLOR.secondary,
-    color: COLOR.default,
-    size: "16px"
-  },
-  terciary :{
-  background: COLOR.terciary,
-  color: COLOR.textColor,
-  size: "16px"
-  },
-  noBG :{
-    background: COLOR.noBG,
-    color: COLOR.default,
-    size: "16px"
-    },
-};
-
-
-
 export interface IdBtn {
   icon: React.ReactNode;
-  color: string;
-  background: string;
+  variant: string;
   size: string; //tamaño texto
 }
 
@@ -59,15 +19,12 @@ const Botton = styled.button<IdBtn>`
   align-items: center;
   justify-content: center;
   font-size: ${({ size }) => size};
-  background-color: ${({ background }) => COLOR[background]};
-  color: ${({ color }) => color};
+  background-color: ${({ variant, theme }) => theme[variant].background};
+  color: ${({ variant, theme }) => theme[variant].color};
   &:hover {
-    background-color: ${({ background }) => COLOR[background] };
     filter: brightness(80%);
   }
   &:disabled {
-    //estilo para disabled
-    background-color: ${({ background }) =>  COLOR[background] };
     opacity: 0.4;
     cursor: not-allowed;
     filter: brightness(100%);
@@ -83,35 +40,25 @@ const Botton = styled.button<IdBtn>`
 type ButtonProps = {
   children: React.ReactNode;
   icon?: React.ReactNode;
-  color?: string;
-  background?: string;
+  variant?: string;
   size?: string;
   [x: string]: any;
 };
 
-function Boton2({
+function Boton3({
   children,
   icon,
-  color,
-  background,
-  size,
+  size = "16px",
+  variant = "primary",
   ...others
 }: ButtonProps) {
   // console.log(icon)
   return (
-    <Botton
-      icon={icon}
-      color={color || "black"}
-      background={background || COLOR.noBG} 
-      
-      size={size || "16px"}
-      {...others}
-    >
-
+    <Botton icon={icon} variant={variant} size={size} {...others}>
       {children}
       {icon}
     </Botton>
   );
 }
 
-export default Boton2;
+export default Boton3;
