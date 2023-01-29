@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import React, {useState} from "react";
 
 export interface IdBtn {
   icon: React.ReactNode;
@@ -37,6 +38,30 @@ const Botton = styled.button<IdBtn>`
     `}
 `;
 
+const Loader = styled.span`
+
+    width: 20px;
+    height: 20px;
+    border: 3px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  }
+`;
+
+
+
+
 type ButtonProps = {
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -53,10 +78,28 @@ function Boton3({
   ...others
 }: ButtonProps) {
   // console.log(icon)
+  const [loading, setLoading] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
+
+function loader(){
+  setLoading(true);
+  setShow(false)
+  setTimeout(() => {
+    alert("El loader funciona despues de 2 segundos")
+
+    setLoading(false);
+    setShow(true);
+  }, 2000);
+
+}
+
+console.log(loading)
   return (
-    <Botton icon={icon} variant={variant} size={size} {...others}>
-      {children}
-      {icon}
+    <Botton icon={icon} variant={variant} size={size} {...others} onClick={loader}>
+      {show && <span>{children}</span>}
+      {show && <span>{icon}</span>}
+        {loading && <Loader/> }
+
     </Botton>
   );
 }
