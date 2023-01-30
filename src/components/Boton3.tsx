@@ -24,11 +24,14 @@ const Botton = styled.button<IdBtn>`
   color: ${({ variant, theme }) => theme[variant].color};
   &:hover {
     filter: brightness(80%);
-  }
+    background-color: ${({ variant,theme }) => theme[variant].background === "transparent"
+        && "white"
+  }};
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
     filter: brightness(100%);
+    background-color: ${({ variant,theme }) => theme[variant].background === "transparent" && "transparent"};
   }
   ${(props) =>
     props.icon &&
@@ -93,10 +96,12 @@ function loader(){
 
 }
 
-console.log(loading)
+const estilo = loading ? "center" : "";
+
+console.log(estilo)
   return (
-    <Botton icon={icon} variant={variant} size={size} {...others} onClick={loader}>
-      {show && <span>{children}</span>}
+    <Botton icon={icon} variant={variant} size={size} {...others} onClick={loader} style={{justifyContent:estilo}}>
+      {show && <span >{children}</span>}
       {show && <span>{icon}</span>}
         {loading && <Loader/> }
 

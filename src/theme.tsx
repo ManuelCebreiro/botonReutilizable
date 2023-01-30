@@ -23,5 +23,6 @@ export const themes = {
   noBG: {
     background: COLOR.noBG,
     color: COLOR.default,
+    //seria quizas bueno añadir aqui el disabled espacialito de transparente"
   },
 };

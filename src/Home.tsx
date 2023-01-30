@@ -26,11 +26,14 @@ function Home() {
       <ContenidoHome>
         <ThemeProvider theme={themes}>
           <Boton3>Button label1</Boton3>
+          <Boton3 variant ="noBG" disabled>Pruebas</Boton3>
           <Boton3>Button label</Boton3>
+          <Boton3 variant="terciary">Button label</Boton3>
+          <Boton3 variant="secondary">Button label</Boton3>
           <Boton3 disabled>Button label</Boton3>
           <Boton3 icon={<MdDone size={25} />}>Button label</Boton3>
           <Boton3 icon={<MdDone size={25} />}>Button label</Boton3>
-          <BotonTerciary>Button label1</BotonTerciary>
+          {/* <BotonTerciary>Button label1</BotonTerciary>
           <BotonTerciary>Button label</BotonTerciary>
           <BotonTerciary disabled>Button label</BotonTerciary>
           <BotonTerciary icon={<MdDone size={25} />}>
@@ -38,7 +41,7 @@ function Home() {
           </BotonTerciary>
           <BotonTerciary icon={<MdDone size={25} />}>
             Button label
-          </BotonTerciary>
+          </BotonTerciary> */}
         </ThemeProvider>
       </ContenidoHome>
     </Contenido>
@@ -49,13 +52,13 @@ export default Home;
 
 const BotonTerciary = styled(Boton3)`
   background-color: ${({ theme }) => {
-    console.log(theme.terciary.background, "este es el color del background");
+    console.log(theme.noBG.background, "este es el color del background");
     return theme.terciary.background;
   }};
   &:hover {
     background-color: ${() => {
       console.log(themes.terciary.background, "esto");
-      return themes.terciary.background === "transparent"
+      return themes.noBG.background === "transparent"
         ? "white"
         : themes.terciary.background;
     }};
